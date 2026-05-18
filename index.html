@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! - Cybernetic Horizons</title>
+    <!-- Meta Descriptions for SEO -->
+    <meta name="description" content="Thank you for downloading Cybernetic Horizons. Experience your download with interactive 3D mockups, direct scratch-to-reveal surprises, and live progress trackers.">
+    <meta name="keywords" content="Thank You Page, Interactive Dashboard, Web Design Challenge, jQuery UI, HTML5 Canvas, Cybernetic Horizons">
+    
+    <!-- Google Fonts: Outfit (Heading) & Plus Jakarta Sans (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Core Style File -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="mode-app">
+    <!-- Confetti Canvas overlay -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Glowing Background Lights -->
+    <div class="glow-bg-orb orb-1" id="glow-orb-1"></div>
+    <div class="glow-bg-orb orb-2" id="glow-orb-2"></div>
+    <div class="glow-bg-orb orb-3" id="glow-orb-3"></div>
+
+    <div class="dashboard-container">
+        <!-- HEADER: Logo & Experience Toggle -->
+        <header class="app-header">
+            <div class="brand-logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">AETHER<span>LABS</span></span>
+            </div>
+            
+            <!-- Dynamic State Switcher -->
+            <div class="state-toggle-wrapper">
+                <button type="button" class="toggle-btn active" id="btn-toggle-app" data-target="app">
+                    <i data-lucide="smartphone"></i>
+                    <span>Mobile App</span>
+                </button>
+                <button type="button" class="toggle-btn" id="btn-toggle-ebook" data-target="ebook">
+                    <i data-lucide="book-open"></i>
+                    <span>eBook Edition</span>
+                </button>
+            </div>
+
+            <!-- Sound controls -->
+            <button class="sound-toggle-btn" id="btn-sound-toggle" aria-label="Toggle Sound Effects">
+                <i data-lucide="volume-2" id="sound-icon-on"></i>
+                <i class="hidden" data-lucide="volume-x" id="sound-icon-off"></i>
+            </button>
+        </header>
+
+        <!-- MAIN DASHBOARD CONTENT -->
+        <main class="dashboard-grid">
+            <!-- COLUMN 1: INTERACTIVE MASCOT & FEEDBACK -->
+            <aside class="dashboard-sidebar glass-panel">
+                <!-- Mascot Widget -->
+                <div class="mascot-widget-wrapper">
+                    <!-- Speech Bubble -->
+                    <div class="speech-bubble-wrapper">
+                        <div class="speech-bubble" id="mascot-speech">
+                            Whoa! You have incredible taste. Thanks for downloading! Let's get things rolling. 🎉
+                        </div>
+                    </div>
+
+                    <!-- Interactive SVG Mascot "Joy" -->
+                    <div class="mascot-container" id="joy-mascot">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Robot shadow -->
+                            <ellipse cx="100" cy="180" rx="45" ry="8" fill="rgba(0, 0, 0, 0.25)" />
+                            
+                            <!-- Robot Body Group -->
+                            <g class="mascot-body-group">
+                                <!-- Antennas -->
+                                <line x1="100" y1="50" x2="100" y2="25" stroke="var(--primary-color)" stroke-width="6" stroke-linecap="round" />
+                                <circle cx="100" cy="20" r="8" fill="var(--accent-color)" class="antenna-glow" />
+                                
+                                <!-- Ears -->
+                                <rect x="52" y="65" width="12" height="30" rx="6" fill="var(--primary-color)" />
+                                <rect x="136" y="65" width="12" height="30" rx="6" fill="var(--primary-color)" />
+                                
+                                <!-- Head -->
+                                <rect x="60" y="45" width="80" height="70" rx="24" fill="var(--surface-color)" stroke="var(--primary-color)" stroke-width="4" />
+                                
+                                <!-- Face Screen -->
+                                <rect x="68" y="53" width="64" height="46" rx="14" fill="#0b0f19" />
+                                
+                                <!-- Eyes (Customized via CSS/JS) -->
+                                <g class="mascot-eyes">
+                                    <!-- Left Eye Socket -->
+                                    <circle cx="86" cy="76" r="12" fill="var(--eye-socket-bg, rgba(255,255,255,0.05))" />
+                                    <!-- Right Eye Socket -->
+                                    <circle cx="114" cy="76" r="12" fill="var(--eye-socket-bg, rgba(255,255,255,0.05))" />
+                                    
+                                    <!-- Left pupil -->
+                                    <circle class="pupil pupil-left" cx="86" cy="76" r="6" fill="var(--accent-color)" />
+                                    <!-- Right pupil -->
+                                    <circle class="pupil pupil-right" cx="114" cy="76" r="6" fill="var(--accent-color)" />
+                                </g>
+                                
+                                <!-- Mouth / Status Display -->
+                                <path class="mascot-mouth" d="M 88,88 Q 100,98 112,88" fill="none" stroke="var(--accent-color)" stroke-width="3" stroke-linecap="round" />
+
+                                <!-- Body Neck -->
+                                <rect x="88" y="112" width="24" height="12" rx="4" fill="var(--primary-color)" />
+                                
+                                <!-- Torso -->
+                                <path d="M 70,122 L 130,122 L 120,165 L 80,165 Z" fill="var(--surface-color)" stroke="var(--primary-color)" stroke-width="4" />
+                                <!-- Core Screen -->
+                                <rect x="85" y="130" width="30" height="24" rx="6" fill="#0b0f19" />
+                                <!-- Pulsing heart/icon in torso -->
+                                <circle cx="100" cy="142" r="5" fill="var(--accent-color)" class="pulse-core" />
+                                
+                                <!-- Arms -->
+                                <path class="arm arm-left" d="M 70,130 Q 40,140 50,160" fill="none" stroke="var(--primary-color)" stroke-width="8" stroke-linecap="round" />
+                                <path class="arm arm-right" d="M 130,130 Q 160,140 150,160" fill="none" stroke="var(--primary-color)" stroke-width="8" stroke-linecap="round" />
+                            </g>
+                        </svg>
+                    </div>
+                    <p class="mascot-subtitle">Tap Joy for confetti or silly prompts!</p>
+                </div>
+
+                <!-- Rating / Feedback Section -->
+                <div class="feedback-widget">
+                    <h3 class="widget-title">Quick App Rating</h3>
+                    <p class="widget-desc">How was your download experience?</p>
+                    <div class="star-rating-row" id="star-rating">
+                        <button class="star-btn" data-rating="1" aria-label="1 Star"><i data-lucide="star"></i></button>
+                        <button class="star-btn" data-rating="2" aria-label="2 Stars"><i data-lucide="star"></i></button>
+                        <button class="star-btn" data-rating="3" aria-label="3 Stars"><i data-lucide="star"></i></button>
+                        <button class="star-btn" data-rating="4" aria-label="4 Stars"><i data-lucide="star"></i></button>
+                        <button class="star-btn" data-rating="5" aria-label="5 Stars"><i data-lucide="star"></i></button>
+                    </div>
+                    <div class="feedback-message" id="feedback-result">Select stars to share!</div>
+                </div>
+
+                <!-- Mock Sharing Panel -->
+                <div class="social-share-widget">
+                    <h3 class="widget-title">Share the Love</h3>
+                    <div class="share-buttons-grid">
+                        <button class="share-btn-item btn-twitter" id="btn-share-twitter" title="Share on Twitter">
+                            <i data-lucide="twitter"></i>
+                        </button>
+                        <button class="share-btn-item btn-linkedin" id="btn-share-linkedin" title="Share on LinkedIn">
+                            <i data-lucide="linkedin"></i>
+                        </button>
+                        <button class="share-btn-item btn-facebook" id="btn-share-facebook" title="Share on Facebook">
+                            <i data-lucide="facebook"></i>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- COLUMN 2: DOWNLOAD & MAIN STATE ACTIONS -->
+            <section class="dashboard-main-content glass-panel" id="main-content-panel">
+                <!-- APP DOWNLOAD STATE -->
+                <div class="state-content active" id="state-app">
+                    <div class="badge neon-badge-app">DOWNLOAD SECURED</div>
+                    <h1 class="main-heading">You are officially in!</h1>
+                    <p class="main-description">
+                        Thank you for downloading **Aether UI Hub v2.4**. The launcher is setting up your core libraries and optimizing asset rendering pipelines.
+                    </p>
+
+                    <!-- LIVE DOWNLOAD PROGRESS BOARD -->
+                    <div class="download-progress-card">
+                        <div class="progress-info-row">
+                            <span class="progress-status-lbl" id="app-progress-status">Initializing stream...</span>
+                            <span class="progress-percentage-lbl" id="app-progress-percent">0%</span>
+                        </div>
+                        <div class="progress-track-bar">
+                            <div class="progress-fill-bar" id="app-progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="progress-details-row">
+                            <span class="details-item"><i data-lucide="hard-drive"></i> Size: 48.2 MB</span>
+                            <span class="details-item" id="app-download-speed"><i data-lucide="gauge"></i> Speed: -- MB/s</span>
+                        </div>
+                    </div>
+
+                    <!-- NEXT STEPS CHECKLIST -->
+                    <div class="next-steps-wrapper">
+                        <h2 class="sub-heading">Next Steps</h2>
+                        <ul class="steps-list">
+                            <li class="step-item checked">
+                                <div class="step-num-icon"><i data-lucide="check"></i></div>
+                                <div class="step-details">
+                                    <strong>Download Package</strong>
+                                    <span>Successfully cached bundle in local memory.</span>
+                                </div>
+                            </li>
+                            <li class="step-item" id="step-install">
+                                <div class="step-num-icon" id="step-install-icon">2</div>
+                                <div class="step-details">
+                                    <strong>Configure Integration</strong>
+                                    <span id="step-install-desc">Extracting configuration presets to project directory...</span>
+                                </div>
+                            </li>
+                            <li class="step-item" id="step-complete">
+                                <div class="step-num-icon" id="step-complete-icon">3</div>
+                                <div class="step-details">
+                                    <strong>Launch Application</strong>
+                                    <span>Initiate visual sandbox and explore standard templates.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- BUTTON ACTIONS -->
+                    <div class="actions-buttons-row">
+                        <button class="primary-btn app-style" id="btn-app-action" disabled>
+                            <i data-lucide="play"></i> <span>Awaiting Stream...</span>
+                        </button>
+                        <button class="secondary-btn" id="btn-app-retrigger">
+                            <i data-lucide="refresh-cw"></i> <span>Re-install</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- EBOOK DOWNLOAD STATE -->
+                <div class="state-content" id="state-ebook">
+                    <div class="badge neon-badge-ebook">COMPLIMENTARY ACCESS</div>
+                    <h1 class="main-heading">Knowledge Unlocked.</h1>
+                    <p class="main-description">
+                        Thank you for claiming your digital edition of **"Cybernetic Horizons: A Designer's Guide to 2026."** We've loaded it with visual wisdom.
+                    </p>
+
+                    <!-- DIRECT DOWNLOAD NOTIFICATION CARD -->
+                    <div class="ebook-download-card">
+                        <div class="ebook-card-icon">
+                            <i data-lucide="file-text"></i>
+                        </div>
+                        <div class="ebook-card-meta">
+                            <h3 class="ebook-file-title">Cybernetic_Horizons_Ed_2026.pdf</h3>
+                            <p class="ebook-file-size">PDF Format • 24.8 MB • Interactive layout</p>
+                        </div>
+                        <a href="assets/ebook_cover.png" download="Cybernetic_Horizons_eBook.png" class="ebook-download-pill-btn" id="btn-ebook-download">
+                            <i data-lucide="download-cloud"></i>
+                            <span>Save File</span>
+                        </a>
+                    </div>
+
+                    <!-- SCRATCH CARD BONUS SECTION -->
+                    <div class="scratch-card-section">
+                        <div class="scratch-header">
+                            <h2 class="sub-heading scratch-title"><i data-lucide="gift"></i> A Little Surprise For You...</h2>
+                            <p class="scratch-description">Scratch the card below to reveal your secret download bonus coupon!</p>
+                        </div>
+                        
+                        <!-- The Canvas Scratch Card Wrapper -->
+                        <div class="scratch-canvas-container">
+                            <!-- Hidden underneath content -->
+                            <div class="scratch-coupon-under" id="scratch-gift-reveal">
+                                <div class="coupon-badge">VIP BONUS</div>
+                                <div class="coupon-code">HORIZON50</div>
+                                <div class="coupon-details">Enjoy 50% Off Our Premium Course Bundle!</div>
+                                <button class="coupon-copy-btn" id="btn-copy-coupon">
+                                    <i data-lucide="copy"></i> <span>Copy Code</span>
+                                </button>
+                            </div>
+                            
+                            <!-- The scratch canvas -->
+                            <canvas id="scratch-canvas" width="380" height="200"></canvas>
+                        </div>
+                        
+                        <p class="scratch-percentage-info" id="scratch-percent-indicator">Scratch card above (0% cleared)</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COLUMN 3: DYNAMIC 3D ASSETS -->
+            <section class="dashboard-visuals-panel glass-panel">
+                <!-- APP VISUAL: Interactive Smartphone Mockup -->
+                <div class="visual-wrapper active" id="visual-app">
+                    <div class="perspective-box" id="phone-perspective-box">
+                        <div class="phone-mockup">
+                            <div class="phone-speaker"></div>
+                            <div class="phone-screen">
+                                <!-- Image generated high-fidelity asset -->
+                                <img src="assets/app_mockup.png" alt="Aether App Dashboard Screen" class="phone-screenshot" id="app-screenshot">
+                                
+                                <!-- Hover light overlays -->
+                                <div class="phone-screen-glare"></div>
+                            </div>
+                            <div class="phone-home-indicator"></div>
+                        </div>
+                        <div class="box-shadow-3d"></div>
+                    </div>
+                    <div class="visual-badge">
+                        <span class="pulse-indicator"></span>
+                        Live Interactive Render
+                    </div>
+                </div>
+
+                <!-- EBOOK VISUAL: Interactive 3D Book Rotate -->
+                <div class="visual-wrapper" id="visual-ebook">
+                    <div class="perspective-box" id="book-perspective-box">
+                        <div class="book-container-3d">
+                            <!-- Front cover -->
+                            <div class="book-cover-front">
+                                <img src="assets/ebook_cover.png" alt="Cybernetic Horizons Book Cover" class="book-cover-img" id="book-cover">
+                                <div class="book-spine-hinge"></div>
+                            </div>
+                            <!-- Book spine side -->
+                            <div class="book-spine">
+                                <span class="spine-text">CYBERNETIC HORIZONS</span>
+                            </div>
+                            <!-- Book back -->
+                            <div class="book-cover-back"></div>
+                            <!-- Internal pages -->
+                            <div class="book-pages-stack"></div>
+                        </div>
+                        <div class="box-shadow-3d-book"></div>
+                    </div>
+                    <div class="visual-badge">
+                        <i data-lucide="move"></i> Hover to rotate in 3D
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER: Credits -->
+        <footer class="app-footer">
+            <p>© 2026 Aether Labs Inc. Creative Front-End Showcase. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Statement</a>
+                <span>•</span>
+                <a href="#support">Get Tech Support</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Core Script Assets -->
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom Application Code -->
+    <script src="script.js"></script>
+</body>
+</html>
