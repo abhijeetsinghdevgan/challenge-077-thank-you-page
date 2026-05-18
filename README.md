@@ -11,7 +11,7 @@ Instead of presenting a static text block, this page transforms user checkout in
 Below is a live recording of the dynamic post-download dashboard showing state transitions, 3D mouseover perspective tilts, pupil tracking Mascot physics, star rating particle explosions, and the brush-metallic scratch-off reveal in action:
 
 <p align="center">
-  <img src="assets/demo_recording.webp" alt="Interactive Dashboard Walkthrough Demo" width="800" style="border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <img src="assets/demo_recording.gif" alt="Interactive Dashboard Walkthrough Demo" width="800" style="border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
 </p>
 
 ### 🎨 Curated Production-Ready Design Assets
